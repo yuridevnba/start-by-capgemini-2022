@@ -4,7 +4,9 @@
 package todoApp;
 
 import Util.ConnectionFactory;
+import controlle.ProjectControlle;
 import java.sql.Connection;
+import model.Project;
 
 public class App {
     public String getGreeting() {
@@ -19,20 +21,25 @@ public class App {
         
         ConnectionFactory.closeConnection(c);
         
+           
+      ProjectControlle projectcontrolle = new ProjectControlle();
+       
+       Project project = new Project();
+       
+       project.setName("Projeto Teste");
+       project.setDescription("description");
+       
+       projectcontrolle.save(project);  
+       
+      
+     //  project.setName("Novo nome do projeto");
+     //  projectcontrolle.update(project);
+       
+    //  List<Project> projects = projectcontrolle.getAll();
+      
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+      //  System.out.println("Total de projetos = "+ projects.size());
+         
     }
 }

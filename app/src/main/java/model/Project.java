@@ -14,17 +14,24 @@ public class Project {
     private int id;
     private String name;
     private String description;
-    private Date creadtedAt;
+    private Date createAt ;        //createAt;
     private Date updateAt;
 
     public Project(int id, String name, String description, Date creadtedAt, Date updateAt) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.creadtedAt = creadtedAt;
+        this.createAt = creadtedAt;
         this.updateAt = updateAt;
     }
-
+  
+    
+    public   Project(){
+        
+    }
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -50,11 +57,11 @@ public class Project {
     }
 
     public Date getCreadtedAt() {
-        return creadtedAt;
+        return createAt;
     }
 
     public void setCreadtedAt(Date creadtedAt) {
-        this.creadtedAt = creadtedAt;
+        this.createAt = creadtedAt;
     }
 
     public Date getUpdateAt() {
@@ -67,8 +74,10 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" + "id=" + id + ", name=" + name + ", description=" + description + ", creadtedAt=" + creadtedAt + ", updateAt=" + updateAt + '}';
+        return this.name;
     }
+
+   
     
     
 }
