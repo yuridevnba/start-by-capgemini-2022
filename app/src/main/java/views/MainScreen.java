@@ -8,6 +8,8 @@ import controlle.ProjectControlle;
 import controlle.TaskController;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
@@ -356,6 +358,13 @@ public class MainScreen extends javax.swing.JFrame {
         ProjectDialgScreen projetcDialogScreen = new ProjectDialgScreen(this,rootPaneCheckingEnabled);
         projetcDialogScreen.setVisible(true);
         
+        
+        projetcDialogScreen.addWindowListener( new WindowAdapter(){ // Ouvinte de Janela
+        
+            public void windowClosed(WindowEvent e){ // avisa quando a janela for fechada.
+                loadProjects(); // carregar
+            }
+    });
         
     }//GEN-LAST:event_jLabelProjectsAddMouseClicked
 
