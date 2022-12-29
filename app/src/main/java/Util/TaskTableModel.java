@@ -20,7 +20,7 @@ public class TaskTableModel extends AbstractTableModel {// implementação padrão 
     List<Task> tasks = new ArrayList<>();
 
     @Override
-    public int getRowCount() { //quantidade de tarefas
+    public int getRowCount() { //quantidade de tarefas,quantas linhas vão ser mostradas.
         return tasks.size();
     }
 
@@ -31,27 +31,31 @@ public class TaskTableModel extends AbstractTableModel {// implementação padrão 
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) { // valor que deve ser exibido em uma determinada linha e coluna.
-
-        switch (columnIndex) {
-            case 1: 
-                return tasks.get(rowIndex).getName(); // método for chamado vai receber qual linha e qual coluna vai sair essa informação.
-            
-
-            case 2:
-                return tasks.get(rowIndex).getDescription();
-
-            case 3:
-                 return tasks.get(rowIndex).getDeadline();
-             
-            case 4:
-                return tasks.get(rowIndex).isIsCompleted();
-
-            case 5:
-                return "";
-
-            default:
-
-        }
+        return switch (columnIndex) {
+            case 1 -> tasks.get(rowIndex).getName();
+            case 2 -> tasks.get(rowIndex).getDescription();
+            case 3 -> tasks.get(rowIndex).getDeadline();
+            case 4 -> tasks.get(rowIndex).isIsCompleted();
+            case 5 -> "";
+            case 6 -> "";
+            default -> "Dados não encontrados";
+        }; // método for chamado vai receber qual linha e qual coluna vai sair essa informação.
     }
+
+    public String[] getColumns() {
+        return columns;
+    }
+
+    
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+    
+    
 
 }

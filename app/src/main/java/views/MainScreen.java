@@ -4,6 +4,7 @@
  */
 package views;
 
+import Util.TaskTableModel;
 import controlle.ProjectControlle;
 import controlle.TaskController;
 import java.awt.Color;
@@ -13,6 +14,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
+import model.Task;
 
 /**
  *
@@ -23,8 +25,10 @@ public class MainScreen extends javax.swing.JFrame {
     ProjectControlle   projectControlle;
     TaskController     taskController;
     
-    DefaultListModel projectModel; // vai fazer a construção visual do componente, esse objeto vai ser responsavel por ser um model do componente gráfico.
-   
+    DefaultListModel projectsModel; // vai fazer a construção visual do componente, esse objeto vai ser responsavel por ser um model do componente gráfico.
+    
+    TaskTableModel taskModel;
+            
     public MainScreen() {
         initComponents();
         decorateTableTask();
@@ -305,8 +309,8 @@ public class MainScreen extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,9 +332,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelTasks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanelToolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -470,23 +472,35 @@ public void decorateTableTask(){
   }
   public void initComponetsModel(){
       //projectModel = new DefaultListModel<Project>();// os projetos tem q ser carregados e jogados no projectModel.
-      projectModel = new DefaultListModel();
+      projectsModel = new DefaultListModel();
       loadProjects();
+      taskModel= new TaskTableModel();
+      jTableTasks.setModel(taskModel);
+      loadTasks();
   }
+  
+  public void loadTasks(){// carregar as tarefas do bd e vai setar as tarefas para dentro do tablemodel, para ele saber quais as informações que devem ser exibidas.
+      
+      List<Task>tasks= taskController.getAll(PROPERTIES);
+      
+      taskModel.setTasks(tasks);
+  }
+  
+  
   
   public void loadProjects(){  // carregamento dos projetos
      
       List<Project>projects = projectControlle.getAll(); // carregar todos os projetos nessa lista.
       
-      projectModel.clear(); // estrutura que aguarda esse projetos.
+      projectsModel.clear(); // estrutura que aguarda esse projetos.
       
       for(int i=0 ; i<projects.size() ; i++){
           
           Project project = projects.get(i);
-          projectModel.addElement(project);
+          projectsModel.addElement(project);
           
       }
-      jListProjects.setModel(projectModel);
+      jListProjects.setModel(projectsModel);
       
       
   }
