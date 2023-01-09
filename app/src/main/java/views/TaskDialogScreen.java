@@ -182,10 +182,15 @@ public class TaskDialogScreen extends javax.swing.JDialog {
             task.setDescription(jTextAreaDescription.getText());
             task.setNotes(jTextAreaNotes.getText());
             task.setIsCompleted(false);
+            
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date deadline = null;
             deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
             task.setDeadline(deadline);
+            
+            task.setCreatedAt(project.getCreadtedAt());
+            task.setUpdateAt(project.getUpdateAt());
+  
             
             controller.save(task);
             JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");

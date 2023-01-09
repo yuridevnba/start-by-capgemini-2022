@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Project;
 import Util.ConnectionFactory;
+import java.sql.Date;
 
 /**
  *
@@ -37,8 +38,8 @@ public class ProjectControlle {
             
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());
-            statement.setDate(3, new java.sql.Date(project.getCreadtedAt().getTime()));
-            statement.setDate(4, new java.sql.Date(project.getUpdateAt().getTime()));
+            statement.setDate(3, new Date(project.getCreadtedAt().getTime()));
+            statement.setDate(4, new Date(project.getUpdateAt().getTime()));
             
             statement.execute();
             
@@ -68,8 +69,8 @@ public class ProjectControlle {
             
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());          
-            statement.setDate(3, new java.sql.Date(project.getCreadtedAt().getTime()));
-            statement.setDate(4, new java.sql.Date(project.getUpdateAt().getTime()));
+            statement.setDate(3, new Date(project.getCreadtedAt().getTime()));
+            statement.setDate(4, new Date(project.getUpdateAt().getTime()));
             statement.setInt(5,project.getId());
             
             statement.execute();
@@ -117,7 +118,7 @@ public class ProjectControlle {
                
                Project project = new Project();
                
-               project.setId(resultSet.getInt("id"));
+               project.setId(resultSet.getInt("idprojeto"));
                project.setName(resultSet.getString("name"));
                project.setDescription(resultSet.getString("description"));        
                project.setCreadtedAt(resultSet.getDate("createAt"));

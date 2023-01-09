@@ -5,6 +5,7 @@
 package views;
 
 import controlle.ProjectControlle;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Project;
 
@@ -163,9 +164,13 @@ public class ProjectDialgScreen extends javax.swing.JDialog {
         // TODO add your handling code here:
         
          try{
+             Date x;
+             x = new Date();
         Project project = new Project();
         project.setName(jTextFieldName.getText());
         project.setDescription(jTextAreaDescription.getText());
+        project.setCreadtedAt(x);
+        project.setUpdateAt(x);
        
         controller.save(project);
         JOptionPane.showMessageDialog(rootPane,"Projeto Salvo com Sucesso!");

@@ -29,9 +29,7 @@ public class Project {
     public   Project(){
         
     }
-    
-    
-    
+   
     public int getId() {
         return id;
     }
@@ -76,8 +74,4 @@ public class Project {
     public String toString() {
         return this.name;
     }
-
-   
-    
-    
 }

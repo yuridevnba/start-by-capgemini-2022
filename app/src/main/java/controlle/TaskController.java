@@ -24,9 +24,9 @@ public class TaskController {
         String sql = "INSERT INTO tasks (idProject"
                 +"name,"
                 +"description,"
-                +"completed,"
+                +"Completed,"
                 +"notes,"
-                +"deadline,"
+                +"deadine,"
                 +"createdAt,"
                 +"updateAt) VALUES(?,?,?,?,?,?,?,?)";
         
@@ -39,6 +39,7 @@ public class TaskController {
             
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
+            
             statement.setInt(1,task.getIdProject());
             statement.setString(2,task.getName());
             statement.setString(3, task.getDescription());
@@ -51,7 +52,7 @@ public class TaskController {
             
             
             
-        }catch(Exception e){
+        }catch(SQLException e){
              throw new RuntimeException("Erro ao salvar a tarefa"+e.getMessage(),e);
         }finally{
             ConnectionFactory.closeConnection(connection,statement);
@@ -66,8 +67,8 @@ public class TaskController {
                 +"name=?,"
                 +"description=?,"
                 +"notes=?,"
-                +"completed=?,"
-                +"deadline=?,"
+                +"Completed=?,"
+                +"deadine=?,"
                 +"createdAt=?,"
                 +"updateAt=?"
                 + "WHERE id =?";
@@ -95,7 +96,7 @@ public class TaskController {
             
             //Executando a query
             statement.execute();
-         }catch(Exception e){
+         }catch(SQLException e){
               throw new RuntimeException("Erro ao atualizar a tarefa");
              
          }
@@ -123,7 +124,7 @@ public class TaskController {
             statement.execute();
             
       
-        }catch(Exception e){
+        }catch(SQLException e){
             throw new RuntimeException("Erro ao deletar a tarefa");
             
         } finally{
@@ -164,8 +165,8 @@ public class TaskController {
               task.setName(resultSet.getString("name"));
               task.setDescription(resultSet.getString("description"));
               task.setNotes(resultSet.getString("notes"));
-              task.setIsCompleted(resultSet.getBoolean("completed"));
-              task.setDeadline(resultSet.getDate("deadline"));
+              task.setIsCompleted(resultSet.getBoolean("Completed"));
+              task.setDeadline(resultSet.getDate("deadine"));
               task.setCreatedAt(resultSet.getDate("createdAt"));
               task.setUpdateAt(resultSet.getDate("updatedAt"));
                
@@ -173,7 +174,7 @@ public class TaskController {
                task.add(task);
                
          }
-        }catch(Exception ex) {
+        }catch(SQLException ex) {
              throw new RuntimeException("Erro ao inserir a tarefa"+ex.getMessage(),ex);
         } finally{
             ConnectionFactory.closeConnection(connection,statement,resultSet);

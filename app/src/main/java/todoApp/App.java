@@ -5,8 +5,11 @@ package todoApp;
 
 import Util.ConnectionFactory;
 import controlle.ProjectControlle;
+import controlle.TaskController;
 import java.sql.Connection;
+import java.util.Date;
 import model.Project;
+import model.Task;
 
 public class App {
     public String getGreeting() {
@@ -19,27 +22,28 @@ public class App {
       Connection c = ConnectionFactory.getConnection();  
     
         
-        ConnectionFactory.closeConnection(c);
+      ConnectionFactory.closeConnection(c);
         
-           
-      ProjectControlle projectcontrolle = new ProjectControlle();
+           //SimpleDateFormat format= new SimpleDateFormat("dd/MM/YYYY");
+         /* Date x;
+          x= new Date();
+        
+      TaskController projectcontrolle = new TaskController();
        
-       Project project = new Project();
+       Task project = new Task();
        
-       project.setName("Projeto Teste");
+       project.setName("TesteTask");
        project.setDescription("description");
+       project.setNotes("Nem tudo que reluz é ouro!");
+       project.setIsCompleted(true);
+       project.setDeadline(x);
+       project.setCreatedAt(x);
+       project.setUpdateAt(x);
+       project.setIdProject(5);
        
-       projectcontrolle.save(project);  
-       
-      
-     //  project.setName("Novo nome do projeto");
-     //  projectcontrolle.update(project);
-       
-    //  List<Project> projects = projectcontrolle.getAll();
-      
-        
-        
-      //  System.out.println("Total de projetos = "+ projects.size());
-         
+       projectcontrolle.save(project); */
+     
     }
 }
+
+ 
